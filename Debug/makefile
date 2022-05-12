@@ -8,13 +8,13 @@ DEPFLAGS = -MMD -MP -MF"$(@:%.o=%.d)"
 # All of the sources participating in the build are defined here
 -include sources.mk
 #-include Render/subdir.mk
-#-include Shape/subdir.mk
+-include Shape/subdir.mk
 #-include Shader/subdir.mk
+-include Camera/subdir.mk
 -include IntegrationTest/subdir.mk
 -include PlanetManager/subdir.mk
--include Camera/subdir.mk
 -include Test/subdir.mk
-#-include subdir.mk
+-include subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -64,7 +64,7 @@ SolarSystem: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS) Test
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
 	./Test/TestBench
-	g++  -o "SolarSystem" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ $(CXXFLAGS) $(CPPFLAGS) -o "SolarSystem" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

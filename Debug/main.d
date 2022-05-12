@@ -1,10 +1,14 @@
 main.o: ../main.cpp ../Shader/shader.h ../Camera/camera.h \
- ../PlanetManager/planetmanager.h ../PlanetManager/../Shape/body.h
+ ../IntegrationTest/systemeventintegrationtest.h \
+ ../IntegrationTest/../PlanetManager/planetmanager.h \
+ ../IntegrationTest/../PlanetManager/../Shape/body.h
 
 ../Shader/shader.h:
 
 ../Camera/camera.h:
 
-../PlanetManager/planetmanager.h:
+../IntegrationTest/systemeventintegrationtest.h:
 
-../PlanetManager/../Shape/body.h:
+../IntegrationTest/../PlanetManager/planetmanager.h:
+
+../IntegrationTest/../PlanetManager/../Shape/body.h:

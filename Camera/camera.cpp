@@ -6,6 +6,15 @@
 #include <glm/gtc/constants.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
+Camera& Camera::operator=(Camera const& Other)
+{
+	m_Pos = Other.m_Pos;
+	m_Direction = Other.m_Direction;
+	m_Up = Other.m_Up;
+	m_Left = Other.m_Left;
+	return *this;
+}
+
 //Rotate the camera along pitch/yaw axis
 void Camera::Rotate(float DeltaPitch, float DeltaYaw)
 {

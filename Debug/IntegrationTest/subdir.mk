@@ -1,12 +1,12 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../IntegrationTest/eventtest.cpp 
+../IntegrationTest/systemeventintegrationtest.cpp 
 
 CPP_DEPS += \
-../IntegrationTest/eventtest.d 
+../IntegrationTest/systemeventintegrationtest.d 
 
 OBJS += \
-../IntegrationTest/eventtest.o 
+../IntegrationTest/systemeventintegrationtest.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,6 +21,6 @@ IntegrationTest/%.o: ../IntegrationTest/%.cpp IntegrationTest/subdir.mk
 clean: clean-IntegrationTest
 
 clean-IntegrationTest:
-	-$(RM) ./IntegrationTest/eventtest.d ./IntegrationTest/eventtest.o
+	-$(RM) ./IntegrationTest/systemeventintegrationtest.d ./IntegrationTest/systemeventintegrationtest.o
 
 .PHONY: clean-IntegrationTest

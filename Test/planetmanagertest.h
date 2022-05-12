@@ -1,12 +1,12 @@
 #pragma once
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>
-#include "../EventTest/EventTest.h"
+#include "../PlanetManager/planetmanager.h"
 
-class EventTestTest : public CppUnit::TestFixture
+class PlanetManagerTest : public CppUnit::TestFixture
 {
 
-CPPUNIT_TEST_SUITE(EventTestTest);
+CPPUNIT_TEST_SUITE(PlanetManagerTest);
 CPPUNIT_TEST(testAddPlanet);
 CPPUNIT_TEST(testSetPositionForRequestedIndex);
 CPPUNIT_TEST(testSetPositionThrowsException);
@@ -14,7 +14,7 @@ CPPUNIT_TEST(testPositionsUpdatedAfterOrbit);
 CPPUNIT_TEST_SUITE_END();
 
 private:
-	EventTest m_EventTest;
+	PlanetManager m_PlanetManager;
 public:
 	void setUp() {}
 	void tearDown() {}

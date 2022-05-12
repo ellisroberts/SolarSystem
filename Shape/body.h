@@ -12,14 +12,26 @@ class Body
 {
 public:
 	Body() = default;
-	Body(string const& ObjFile,
-		 glm::vec3 const& Pos,
+	Body(glm::vec3 const& Pos,
 		 glm::vec3 const &Velocity,
 		 glm::vec3 const &Acceleration,
-		 float const Mass);
-	~Body();
-	Body(Body &&Other);
-	Body& operator=(Body &&Other);
+		 float const Mass) :
+		 m_Pos {Pos},
+		 m_Velocity {Velocity},
+		 m_Acceleration {Acceleration},
+		 m_Mass {Mass}
+	{
+	}
+	~Body() = default;
+	Body(Body const& Other):
+		 m_Pos {Other.m_Pos},
+		 m_Velocity {Other.m_Velocity},
+		 m_Acceleration {Other.m_Acceleration},
+		 m_Mass {Other.m_Mass}
+	{
+	}
+
+	Body& operator=(Body const& Other) = delete;
 	static float GetGravitationalConstant()
 	{
 		return m_GravitationalConstant;
@@ -55,13 +67,13 @@ public:
 	{
 		m_Acceleration = Acceleration;
 	}
+
+	//TBD : This function updates vectors based on gravitational attraction
+	//Need to make sure update is always synchronized with frame rate, must be agnostic to opengl context/instance
+	void UpdateOrientation();
+
+
 private:
-	GLuint m_VAO = 0;
-	GLuint m_VBO = 0;
-	GLuint m_TextureVBO = 0;
-	GLuint m_NormalVBO = 0;
-	//Number of vertices
-	GLuint m_NumVertices = 0;
 	//Position of the planet in world space
 	glm::vec3 m_Pos = {0.0, 0.0, 0.0};
 	//Velocity vector of the planet
@@ -69,6 +81,6 @@ private:
 	//Acceleration of the planet
 	glm::vec3 m_Acceleration = {0.0, 0.0, 0.0};
 	//Mass of planet
-	float m_Mass = 0.0;
+	float const m_Mass = 0.0;
 	static constexpr float m_GravitationalConstant = 10000.0;
 };

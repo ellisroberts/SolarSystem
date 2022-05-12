@@ -1,27 +1,30 @@
-#include "EventTest.h"
+#include "planetmanager.h"
 
 #include <iostream>
 #include <stdexcept>
 
-EventTest::EventTest(EventTest &&Other)
+PlanetManager::PlanetManager(PlanetManager &&Other)
 {
 	m_Planets = std::move(Other.m_Planets);
 	Other.m_Planets.clear();
 }
 
-EventTest& EventTest::operator=(EventTest &&Other)
+PlanetManager& PlanetManager::operator=(PlanetManager &&Other)
 {
 	m_Planets = std::move(Other.m_Planets);
 	Other.m_Planets.clear();
 	return *this;
 }
 
-void EventTest::AddPlanet(string const& ObjFileName, glm::vec3 Position, glm::vec3 Velocity, glm::vec3 Acceleration, float Mass)
+void PlanetManager::AddPlanet(glm::vec3 const& Position,
+							  glm::vec3 const& Velocity,
+							  glm::vec3 const& Acceleration,
+							  float Mass)
 {
-	m_Planets.emplace_back(ObjFileName, Position, Velocity, Acceleration, Mass);
+	m_Planets.emplace_back(Position, Velocity, Acceleration, Mass);
 }
 
-void EventTest::SetElementPosition(unsigned int Index, glm::vec3& Position)
+void PlanetManager::SetElementPosition(unsigned int Index, glm::vec3& Position)
 {
 	if (Index >= m_Planets.size())
 	{

@@ -17,7 +17,7 @@ CPPUNIT_TEST(testUpdateOrientation);
 CPPUNIT_TEST_SUITE_END();
 
 private:
-	Body m_Body = Body("/../Render/sphere.obj", {1.0,0,0}, {1.0,0,0}, {1.0,0,0}, 1.0);
+	Body m_Body = Body({1.0,0,0}, {1.0,0,0}, {1.0,0,0}, 1.0);
 public:
 	void setUp() {}
 	void tearDown() {}

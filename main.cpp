@@ -1,6 +1,7 @@
 #include "Shader/shader.h"
 #include "Camera/camera.h"
-#include "IntegrationTest/eventtest.h"
+#include "IntegrationTest/systemeventintegrationtest.h"
+#include "PlanetManager/planetmanager.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -9,7 +10,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-
+#include <memory>
 
 using namespace std;
 
@@ -19,8 +20,8 @@ namespace
 	const GLuint WIDTH = 600;
 	struct WindowInput
 	{
-		Camera camera;
-		EventTest EventTest;
+		shared_ptr<Camera> camera;
+		shared_ptr<PlanetManager> planetManager;
 	};
 }
 
@@ -39,7 +40,8 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 int main(void)
 {
 	GLint ret = 0;
-	WindowInput windowInput = {Camera(), EventTest()};
+	WindowInput windowInput = {make_shared<Camera>(), make_shared<PlanetManager>()};
+	SystemEventIntegrationTest eventTest("", windowInput.camera, windowInput.planetManager);
 	if (!glfwInit()) {
         cout << "GLFW initialization failed!\n";
         glfwTerminate();
@@ -90,7 +92,7 @@ int main(void)
 	glfwSetWindowUserPointer(window, reinterpret_cast<void *>(&windowInput));
 
 	//Run Tests before drawing anything
-	if !(EventTest::runAllTests(windowInput.EventTest, windowInput.camera))
+	if (!eventTest.runAllTests())
 	{
 		return 1;
 	}
